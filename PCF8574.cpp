@@ -404,7 +404,7 @@ void PCF8574::digitalWrite(uint8_t pin, uint8_t value){
 	DEBUG_PRINTLN(value);
 
 	writeByteBuffered = writeByteBuffered & writeMode;
-	_wire->write(writeByteBuffered);
+	_wire->write(writeByteBuffered | readMode); // Fix readMode Pins = HIGH = internal Pullup
 	DEBUG_PRINTLN("Start end trasmission if stop here check pullup resistor.");
 
 	_wire->endTransmission();
